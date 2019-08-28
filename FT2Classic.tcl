@@ -1,4 +1,4 @@
-package provide Ixia 1.0
+package provide Ixia 2.0
 global env
 source $env(IXIA_LIB)
 source $env(ixTclNetwork)/pkgIndex.tcl
