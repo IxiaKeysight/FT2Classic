@@ -1,4 +1,5 @@
 package provide Ixia 1.0
+
 global env
 source $env(IXIA_LIB)
 source $env(ixTclNetwork)/pkgIndex.tcl
@@ -2096,14 +2097,19 @@ proc ::ixia::traffic_config {args} {
 	if {[lsearch $args "-signature_offset"] != -1} {
            keyldel apiData(expArgs) -signature_offset
     }
-	
-	if {[lsearch $args "-pgid_mode"] != -1} {
+    if {[lsearch $args "-integrity_signature"] != -1} {
+           keyldel apiData(expArgs) -integrity_signature
+    }
+    if {[lsearch $args "-integrity_signature_offset"] != -1} {
+           keyldel apiData(expArgs) -integrity_signature_offset
+    }
+    if {[lsearch $args "-pgid_mode"] != -1} {
 			
-		set pgid_mode [keylget apiData(expArgs) -pgid_mode]
-		if {[string match $pgid_mode "custom"]} {
+	set pgid_mode [keylget apiData(expArgs) -pgid_mode]
+	if {[string match $pgid_mode "custom"]} {
 		keyldel apiData(expArgs) -pgid_mode
-               }
-	}
+        }
+    }
 	if {[lsearch $args "-pgid_offset"] != -1} {
 			
 		    set pgid_offset [keylget apiData(expArgs) -pgid_offset]
