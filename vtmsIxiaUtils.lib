@@ -1016,12 +1016,12 @@ proc vtmsIxiaUtils::IXIA_Create_Bursty_GE  {IXIA_Port  args} {
             puts "Not required"
         }
         #dont have support in IxNetwork "-inter_burst_gap_unit gapNanoSeconds", default it will take.
-        if {[regexp  {(\.)} $SourceIP matched]}
+        if {[regexp  {(\.)} $SourceIP matched]} {
             set trafficConfig [::ixia::traffic_config -mode create -port_handle $port1 -l3_protocol ipv4 -ip_src_addr $SourceIP -ip_dst_addr $DestinationIP -ip_precedence $IPprecedence \
                            -mac_src $SourceMAC -mac_dst $DestinationMAC -frame_size $GE_PacketSize -inter_burst_gap $InterBurstGap -inter_stream_gap 1 \
                            -pkts_per_burst 20 -transmit_mode continuous_burst -enable_time_stamp $enableTimestamp -data_pattern_mode repeating -data_pattern xAAAA]
         }
-        if {[regexp  {(\:)} $SourceIP matched]}
+        if {[regexp  {(\:)} $SourceIP matched]} {
             set trafficConfig [::ixia::traffic_config -mode create -port_handle $port1 -l3_protocol ipv6 -ipv6_src_addr $SourceIP -ipv6_dst_addr $DestinationIP -ip_precedence $IPprecedence \
                            -mac_src $SourceMAC -mac_dst $DestinationMAC -frame_size $GE_PacketSize -inter_burst_gap $InterBurstGap -inter_stream_gap 1 \
                            -pkts_per_burst 20 -transmit_mode continuous_burst -enable_time_stamp $enableTimestamp -data_pattern_mode repeating -data_pattern xAAAA]
